@@ -1,0 +1,11 @@
+project = 'bkwire'
+development_deploy_hook = '293838d5-8a93-4d7c-a5f6-6fa6b6ff4d42'
+## bkw-flaskapi
+[[bkw-flaskapi]]
+development_service_id = 'o94crcxe6ogzopjua4gtjm7hs'
+
+
+## phpmyadmin service
+[[bkw-phpmyadmin]]
+development_service_id = '26fkg0xra570t743tqoav6o1j'
+

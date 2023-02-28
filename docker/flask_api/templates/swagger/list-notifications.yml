@@ -1,0 +1,49 @@
+security:
+- bearerAuth: []
+
+tags:
+  - notifications
+summary: list all user notifications
+description: return all notifications assinged to a user read/unread/all
+
+parameters:
+- name: status
+  in: query
+  description: Notification status
+  schema:
+    type: string
+    enum:
+      - all
+      - read
+      - unread
+
+- name: type
+  in: query
+  description: Notification type
+  schema:
+    type: string
+    enum:
+      - bk
+      - loss
+      - system
+      - all
+
+- name: limit
+  in: query
+  description: Limit notification rows returned from DB
+  schema:
+    type: integer
+
+responses:
+  200:
+    description: Successful response
+    content: {}
+  401:
+    description: Unauthorized Request
+    content: {}
+  400:
+    description: Bad Request
+    content: {}
+  500:
+    description: Internal Server Error
+    content: {}

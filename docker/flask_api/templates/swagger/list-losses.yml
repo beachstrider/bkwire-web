@@ -1,0 +1,142 @@
+security:
+- bearerAuth: []
+
+tags:
+  - list
+summary: list creditor losses
+description: supply this endpoint with filters to limit the results
+
+parameters:
+- name: page
+  in: query
+  description: The page number to start from for returned results set.
+  schema:
+    minimum: 0
+    type: integer
+    default: 1
+- name: page_size
+  in: query
+  description: The numbers of items to return.
+  schema:
+    maximum: 100
+    minimum: 1
+    type: integer
+    default: 25
+- name: max_losses_per_case
+  in: query
+  description: The max rows of prioritized results to return.
+  schema:
+    minimum: 1
+    type: integer
+- name: sort_column
+  in: query
+  description: The column to sort by.
+  schema:
+    type: string
+    default: filing_id
+    enum:
+      - city
+      - creditor_name
+      - filing_id
+      - state_code
+      - industry
+      - unsecured_claim
+      - date_filed
+      - date_added
+      - case_name
+- name: sort_order
+  in: query
+  description: asc or desc sort order.
+  schema:
+    type: string
+    default: asc
+    enum:
+      - asc
+      - desc
+- name: search
+  in: query
+  description: filter by creditor name.
+  schema:
+    type: string
+- name: loss
+  in: query
+  description: filter by unsecure value [min > and < max].
+  schema:
+    type: array
+    items:
+      type: integer
+    maxItems: 2
+- name: industries
+  in: query
+  description: filter by industry.
+  schema:
+    type: array
+    items:
+      type: integer
+- name: id
+  in: query
+  description: DC ID from BKs to tie losses back to BK view
+  schema:
+    type: integer
+- name: start_date_filed
+  in: query
+  description: Start date for filter results YYYY-MM-DD
+  schema:
+    type: string
+- name: end_date_filed
+  in: query
+  description: End date for filter results YYYY-MM-DD  
+  schema:
+    type: string
+- name: start_date_added
+  in: query
+  description: Start date added for filter results YYYY-MM-DD
+  schema:
+    type: string
+- name: end_date_added
+  in: query
+  description: End date added for filter results YYYY-MM-DD
+  schema:
+    type: string  
+- name: state_code
+  in: query
+  description: State code for filter results
+  schema:
+    type: string
+- name: city
+  in: query
+  description: city name for filter results
+  schema:
+    type: string
+responses:
+  200:
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              records:
+                type: object
+              count:
+                type: integer
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string

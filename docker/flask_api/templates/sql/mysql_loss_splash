@@ -1,0 +1,13 @@
+SELECT `bankruptcy_204206_data`.`creditor_name` AS creditor_name, `industry_desc`.`naics_desc` as industry, `bankruptcy_204206_data`.`unsecured_claim`
+    FROM `bankruptcy_204206_data`
+      LEFT JOIN `companies` ON `bankruptcy_204206_data`.`creditor_name` = `companies`.`name`
+      LEFT JOIN `industry_desc` ON `companies`.`industry_id` = `industry_desc`.`id`
+      LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_204206_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+    WHERE 1
+    AND date_filed BETWEEN '{{today_date}}' AND now()
+    AND unsecured_claim > 0
+    AND unsecured_claim < 100000000000
+    GROUP BY `bankruptcy_204206_data`.`creditor_name` 
+    ORDER BY unsecured_claim desc
+    LIMIT 5
+    OFFSET 0;

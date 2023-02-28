@@ -1,0 +1,12 @@
+SELECT *
+  FROM user_notifications
+    WHERE user_id = '{{guid}}'
+    {%- if list_not_filters %}
+      {%- for i in list_not_filters %}
+        AND {{i['key']}} = {{i['val']}}
+      {%- endfor -%}
+    {%- endif %}
+    ORDER BY date desc
+    {%- if list_not_limit %}
+    LIMIT {{list_not_limit}}
+    {%- endif %}

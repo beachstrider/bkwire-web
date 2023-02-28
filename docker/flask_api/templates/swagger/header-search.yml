@@ -1,0 +1,53 @@
+security:
+- bearerAuth: []
+
+tags:
+  - search
+summary: search for bks and losses matching filter
+description: returns the top max_results
+
+parameters:
+- name: max_results
+  in: query
+  description: The max search rows returned.
+  schema:
+    minimum: 5
+    type: integer
+    default: 5
+- name: search
+  in: query
+  description: filter by company name.
+  schema:
+    type: string
+responses:
+  200:
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              records:
+                type: object
+              count:
+                type: integer
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string

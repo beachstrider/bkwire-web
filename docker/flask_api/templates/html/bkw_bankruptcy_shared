@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#bks {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#bks td, #bks th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#bks tr:nth-child(even){background-color: #f2f3f3;}
+
+#bks tr:hover {background-color: #ddd;}
+
+#bks th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #2B4489;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+
+<h2><a href="https://BKwire.com/">BKwire Case Shared</a></h2>
+<h3>A BKwire user has shared the following case with you:</h3>
+<h3>{{user_comment}}</h3>
+<table id=bks style="width:50%">
+  <caption style="text-align:left"><i>**Some information may still be under review</i></caption>
+  <tr>
+    <th>Date</th>
+    <th>Company</th>
+    <th>State</th>
+    <th>Filing Type</th>
+    <th>Assets</th>
+    <th>Liabilities</th>
+  </tr>
+  {%- for i in bk_data %}
+  <tr>
+    <td>{{i['date_filed']}}</td>
+    <td><a href="https://BKwire.com/view/bankruptcy/{{i['dci_id']}}">{{i['case_name']}}</a></td>
+    <td>{{i['state_code']}}</td>
+    <td>{{i['cs_chapter']}}</td>
+    <td>{{i['assets_min']}}-{{i['assets_max']}}</td>
+    <td>{{i['liabilities_min']}}-{{i['liabilities_max']}}</td>
+  </tr>
+  {%- endfor -%}
+</table>
+
+<p>You have received a suggested case from [[FIRSTNAME]], a BKwire member.</p>
+
+</body>
+</html>

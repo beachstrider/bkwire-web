@@ -1,0 +1,1 @@
+SELECT count(*) as entries FROM bankruptcies_watchlist where user_id = '{{bk_uid}}';

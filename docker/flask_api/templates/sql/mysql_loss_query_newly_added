@@ -1,0 +1,10 @@
+SELECT `bankruptcy_204206_data`.`id`, `bankruptcy_204206_data`.`creditor_name` AS creditor_name, `companies`.`slug`, `cities_extended`.`state_code`, `cities_extended`.`city`, `industry_desc`.`naics_desc` as industry, `bankruptcy_filing_data`.`case_name`, `bankruptcy_filing_data`.`dci_id`
+        FROM `bankruptcy_204206_data`
+          LEFT JOIN `cities_extended` ON `bankruptcy_204206_data`.`creditor_zip` = `cities_extended`.`zip`
+          LEFT JOIN `companies` ON `bankruptcy_204206_data`.`creditor_name` = `companies`.`name`
+          LEFT JOIN `industry_desc` ON `companies`.`industry_id` = `industry_desc`.`id`
+          LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_204206_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+        WHERE 1
+        {%- if sdf %}
+        AND date_filed between '{{sdf}}' and '{{edf}}';
+        {%- endif %}

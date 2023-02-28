@@ -1,0 +1,28 @@
+security:
+- bearerAuth: []
+
+tags:
+  - list
+summary: list all cities by state_code
+description: returns all US cities for a given two character state code.
+
+parameters:
+- name: state_code
+  in: query
+  description: Get US cities by state code.
+  schema:
+    type: string
+
+responses:
+  200:
+    description: Successful response
+    content: {}
+  401:
+    description: Unauthorized Request
+    content: {}
+  400:
+    description: Bad Request
+    content: {}
+  500:
+    description: Internal Server Error
+    content: {}

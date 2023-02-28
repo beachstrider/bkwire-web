@@ -1,0 +1,8 @@
+INSERT INTO `users_industries`
+(`user_id`, `industry_naics_code`)
+VALUES
+{%- set temp = update_user_industry.pop(0) -%}
+{%- for i in update_user_industry %}
+('{{i['key']}}', '{{i['val']}}'),
+{%- endfor %}
+('{{temp['key']}}', '{{temp['val']}}');

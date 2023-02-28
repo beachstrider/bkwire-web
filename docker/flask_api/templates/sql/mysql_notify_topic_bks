@@ -1,0 +1,7 @@
+SELECT DISTINCT case_name, dci_id, case_number, DATE_FORMAT(`bankruptcy_filing_data`.`date_filed`, '%m-%d') as filing_date, bk_courts.court_name_district
+  FROM bankruptcy_filing_data
+    LEFT JOIN docket_table ON bankruptcy_filing_data.dci_id = docket_table.case_id
+    LEFT JOIN bankruptcies_watchlist ON bankruptcy_filing_data.dci_id = bankruptcies_watchlist.did
+    LEFT JOIN bk_courts ON bankruptcy_filing_data.court_id = bk_courts.bk_court_id
+  WHERE bankruptcy_filing_data.dci_id = bankruptcies_watchlist.did
+  AND STR_TO_DATE(docket_table.entry_date, '%m/%d/%Y') BETWEEN CURDATE() and now();

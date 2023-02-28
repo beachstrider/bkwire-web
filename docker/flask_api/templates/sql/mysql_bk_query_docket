@@ -1,0 +1,1 @@
+SELECT * FROM docket_table WHERE case_id = '{{kwargs['id'][0]}}' ORDER BY case_id;

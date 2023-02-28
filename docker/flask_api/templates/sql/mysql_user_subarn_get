@@ -1,0 +1,1 @@
+SELECT aws_sub_arn FROM {{user_notify_table}} WHERE aws_topic_name_sub = '{{topic_name_sub}}' AND user_id = '{{user_id}}';

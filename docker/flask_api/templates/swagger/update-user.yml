@@ -1,0 +1,135 @@
+security:
+- bearerAuth: []
+
+tags:
+  - user management
+summary: update an existing user in the database
+description: supply the optional parameters to update for the user
+
+requestBody:
+  required: false
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          first_name:
+            type: string
+            description: First Name
+            nullable: true
+          last_name:
+            type: string
+            description: Last Name
+            nullable: true
+          phone_number:
+            type: string
+            description: Phone Number
+            nullable: true
+          company_name:
+            type: string
+            description: Company Name
+            nullable: true
+          company_state:
+            type: string
+            description: Company State
+            nullable: true
+            default: 'null'
+          company_zip_code:
+            type: string
+            description: Compnay Zip Code
+            nullable: true
+            default: 'null'
+          company_sector:
+            type: string
+            description: Company Sector
+            nullable: true
+            default: 'null'                      
+          email_alerts_enabled:
+            type: boolean
+            description: Email Alerts Enabled
+            nullable: true
+            default: 'null'
+          email_alert_1:
+            type: string
+            description: Email Alert 1
+            nullable: true
+            default: 'null'
+          email_alert_2:
+            type: string
+            description: Email Alert 2
+            nullable: true
+            default: 'null'
+          email_alert_3:
+            type: string
+            description: Email Alert 3
+            nullable: true
+            default: 'null'
+          text_alerts_enabled:
+            type: boolean
+            description: Text Alerts Enabled
+            nullable: true
+            default: 'null'
+          phone_alert_1:
+            type: string
+            description: Phone Alert 1
+            nullable: true
+            default: 'null'
+          phone_alert_2:
+            type: string
+            description: Phone Alert 2
+            nullable: true
+            default: 'null'
+          phone_alert_3:
+            type: string
+            description: Phone Alert 3
+            nullable: true
+            default: 'null'
+          onboarding_completed:
+            type: boolean
+            description: Confirm Onboard completion
+            nullable: true
+            default: 'null'
+          product_tour_enabled:
+            type: boolean
+            description: Toggle Product Tour Video on lauch
+            nullable: true
+            default: 'null'            
+          tos:
+            type: boolean
+            description: Accepts the TOS agreement
+            nullable: true
+            default: 'null'            
+          daily:
+            type: boolean
+            description: Subscribe to Daily Digest
+            default: 'null'
+          weekly:
+            type: boolean
+            description: Subscribe to Weekly Digest
+            default: 'null'
+          bi_weekly:
+            type: boolean
+            description: Subscribe to BI-Weekly Digest
+            default: 'null'
+responses:
+  204:
+    description: Successful response
+    content: {}
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string

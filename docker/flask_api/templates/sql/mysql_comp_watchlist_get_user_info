@@ -1,0 +1,1 @@
+SELECT * FROM `users` LEFT JOIN companies_watchlist ON companies_watchlist.user_id = users.id WHERE comp_slug = '{{comp_slug}}' AND email_alerts_enabled = 1;

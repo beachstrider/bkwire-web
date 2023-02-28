@@ -1,0 +1,8 @@
+UPDATE users
+SET
+{%- set temp = update_user_info.pop(0) -%}
+{%- for i in update_user_info %}
+{{i['key']}} = {{i['val']}},
+{%- endfor %}
+{{temp['key']}} = {{temp['val']}}
+WHERE id = '{{user_id}}';

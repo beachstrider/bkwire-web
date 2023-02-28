@@ -1,0 +1,5 @@
+SELECT `companies`.`slug`, `bankruptcy_filing_data`.`case_number`
+    FROM `bankruptcy_filing_data`
+      LEFT JOIN `companies` ON `bankruptcy_filing_data`.`case_name` = `companies`.`name`
+    WHERE
+      `bankruptcy_filing_data`.`dci_id` = '{{kwargs['id']}}';

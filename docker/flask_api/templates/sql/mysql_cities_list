@@ -1,0 +1,1 @@
+SELECT DISTINCT city FROM cities_extended WHERE state_code = '{{kwargs['state_code'][0]}}' GROUP BY city ORDER BY city;

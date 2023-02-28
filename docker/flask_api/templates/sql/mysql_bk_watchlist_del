@@ -1,0 +1,1 @@
+DELETE FROM `bankruptcies_watchlist` WHERE `bankruptcies_watchlist`.`did` = '{{kwargs['id']}}';

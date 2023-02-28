@@ -1,0 +1,15 @@
+SELECT `bankruptcy_filing_data`.`case_name`, `bankruptcy_filing_data`.`dci_id`, CONVERT(SUM(`bankruptcy_204206_data`.`unsecured_claim`), CHAR) as total_loss
+    FROM `bankruptcy_201_data`
+      LEFT JOIN `estimated_creditors` ON `bankruptcy_201_data`.`estimated_creditors` = `estimated_creditors`.`id`
+      LEFT JOIN `estimated_assets` ON `bankruptcy_201_data`.`estimated_assets` = `estimated_assets`.`id`
+      LEFT JOIN `estimated_liabilities` ON `bankruptcy_201_data`.`estimated_liabilities` = `estimated_liabilities`.`id`
+      LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_201_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+      LEFT JOIN `companies` ON `bankruptcy_filing_data`.`case_name` = `companies`.`name`
+      LEFT JOIN `industry_desc` ON `companies`.`industry_id` = `industry_desc`.`id`
+      LEFT JOIN `company_information` ON `bankruptcy_filing_data`.`dci_id` = `company_information`.`id`
+      LEFT JOIN `cities_extended` ON `company_information`.`company_zip` = `cities_extended`.`zip`
+      LEFT JOIN  `bankruptcy_204206_data` ON `bankruptcy_filing_data`.`id` = `bankruptcy_204206_data`.`filing_id`
+    WHERE 1
+    AND (`bankruptcy_filing_data`.`case_name` like '%{{kwargs['search'][0]}}%')
+    GROUP BY `bankruptcy_filing_data`.`case_name`
+    LIMIT {{kwargs['page_size'][0]}};

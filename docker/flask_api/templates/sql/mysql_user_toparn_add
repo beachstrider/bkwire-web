@@ -1,0 +1,2 @@
+INSERT INTO `aws_topic_information` (`name`, `arn`)
+VALUES ('{{topic_name}}', '{{topic_arn}}');

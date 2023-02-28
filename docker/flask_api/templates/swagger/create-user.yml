@@ -1,0 +1,88 @@
+security:
+- bearerAuth: []
+
+tags:
+  - user management
+summary: create user in the database
+description: supply the required parameters to create a user
+
+requestBody:
+  required: true
+  content:
+    application/x-www-form-urlencoded:
+      schema:
+        type: object
+        properties:
+          email_address:
+            required: true
+            type: string
+            description: Email Address
+          first_name:
+            required: true
+            type: string
+            description: First Name
+          last_name:
+            required: true
+            type: string
+            description: Last Name
+          phone_number:
+            type: string
+            description: Phone Number
+          company_name:
+            type: string
+            description: Company Name
+          company_state:
+            type: string
+            description: Company State
+          company_zip_code:
+            type: string
+            description: Company Zip Code
+          company_sector:
+            type: string
+            description: Company Sector            
+          email_alerts_enabled:
+            type: boolean
+            description: Email Alerts Enabled
+          email_alert_1:
+            type: string
+            description: Email Alert 1
+          email_alert_2:
+            type: string
+            description: Email Alert 2
+          email_alert_3:
+            type: string
+            description: Email Alert 3
+          text_alerts_enabled:
+            type: boolean
+            description: Text Alerts Enabled
+          phone_alert_1:
+            type: boolean
+            description: Phone Alert 1
+          phone_alert_2:
+            type: string
+            description: Phone Alert 2
+          phone_alert_3:
+            type: string
+            description: Phone Alert 3
+responses:
+  204:
+    description: Successful response
+    content: {}
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string

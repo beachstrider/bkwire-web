@@ -1,0 +1,1 @@
+SELECT * FROM `users` LEFT JOIN bankruptcies_watchlist ON bankruptcies_watchlist.user_id = users.id WHERE bankruptcies_watchlist.did = '{{dc_id}}' AND email_alerts_enabled = 1 AND subscription_price_id = '{{price_id}}';

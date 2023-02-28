@@ -1,0 +1,28 @@
+security:
+- bearerAuth: []
+
+tags:
+  - user management
+summary: list files user has access to
+description: supply case id to see users files access
+
+parameters:
+- name: dci_id
+  in: query
+  description: Company Case entry ID
+  schema:
+    type: integer
+    
+responses:
+  200:
+    description: Successful response
+    content: {}
+  401:
+    description: Unauthorized Request
+    content: {}
+  400:
+    description: Bad Request
+    content: {}
+  500:
+    description: Internal Server Error
+    content: {}

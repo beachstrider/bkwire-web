@@ -1,0 +1,34 @@
+security:
+- bearerAuth: []
+
+tags:
+  - share
+summary: share a loss with an email address
+description: supply email address to this endpoint to share impacted business details
+
+parameters:
+- name: email_address
+  in: query
+  description: Notification status
+  schema:
+    type: string
+
+- name: lossid
+  in: query
+  description: loss id of impacted business to share
+  schema:
+    type: integer
+
+responses:
+  200:
+    description: Successful response
+    content: {}
+  401:
+    description: Unauthorized Request
+    content: {}
+  400:
+    description: Bad Request
+    content: {}
+  500:
+    description: Internal Server Error
+    content: {}

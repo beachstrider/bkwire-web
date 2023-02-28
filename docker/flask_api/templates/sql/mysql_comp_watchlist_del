@@ -1,0 +1,1 @@
+DELETE FROM `companies_watchlist` WHERE `companies_watchlist`.`id` = '{{kwargs['id']}}';

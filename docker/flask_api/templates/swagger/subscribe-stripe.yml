@@ -1,0 +1,38 @@
+security:
+- bearerAuth: []
+
+tags:
+  - stripe
+summary: Update ID with new Price ID
+description: Add or Update user subscription
+
+parameters:
+- name: customer_id
+  in: query
+  description: Stripe CustomerId
+  schema:
+    type: string
+- name: price_id
+  in: query
+  description: Stripe PriceId
+  schema:
+    type: string
+- name: trial
+  in: query
+  description: Stripe trial enabled
+  schema:
+    type: string
+
+responses:
+  200:
+    description: Successful response
+    content: {}
+  401:
+    description: Unauthorized Request
+    content: {}
+  400:
+    description: Bad Request
+    content: {}
+  500:
+    description: Internal Server Error
+    content: {}

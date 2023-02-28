@@ -1,0 +1,1 @@
+SELECT count(*) as count, date_filed FROM bankruptcy_filing_data WHERE date_filed BETWEEN NOW() - INTERVAL 30 DAY AND NOW() Group by date_filed ORDER BY date_filed ASC;

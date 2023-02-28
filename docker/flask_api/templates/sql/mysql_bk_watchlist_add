@@ -1,0 +1,2 @@
+INSERT INTO `bankruptcies_watchlist` (`user_id`, `did`, `added_date`, `alerts`)
+VALUES ('{{user_id}}', '{{kwargs['id']}}', CURRENT_TIMESTAMP, '1');

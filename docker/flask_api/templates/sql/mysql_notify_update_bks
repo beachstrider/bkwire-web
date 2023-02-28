@@ -1,0 +1,1 @@
+SELECT DISTINCT user_id, track_id FROM `user_notify_cases` WHERE aws_topic_name_sub = '{{topic_name}}';

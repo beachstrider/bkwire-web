@@ -1,0 +1,1 @@
+SELECT count(*) as entries FROM companies_watchlist where user_id = '{{bk_uid}}';

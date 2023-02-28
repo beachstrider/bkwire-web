@@ -1,0 +1,9 @@
+project = 'bkwire'
+production_deploy_hook = '6c87bfb2-2c51-493d-8e29-c79c5826fe07'
+## bkw-flaskapi
+[[bkw-flaskapi]]
+production_service_id = 'yubhuno8hsa7jord34c4thgn7'
+
+## phpmyadmin service
+[[bkw-phpmyadmin]]
+production_service_id = 'myvtadv0ypxxwxqw5u4s1ip7i'

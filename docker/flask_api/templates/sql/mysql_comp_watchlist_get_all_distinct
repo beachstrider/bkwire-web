@@ -1,0 +1,1 @@
+SELECT DISTINCT comp_slug FROM companies_watchlist;

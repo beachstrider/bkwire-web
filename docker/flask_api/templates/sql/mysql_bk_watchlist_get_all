@@ -1,0 +1,5 @@
+SELECT case_link, case_number, dci_id, date_filed, case_name, status_204206
+  FROM bankruptcy_filing_data
+    LEFT JOIN bankruptcies_watchlist ON bankruptcies_watchlist.did = bankruptcy_filing_data.dci_id
+  WHERE bankruptcies_watchlist.did = bankruptcy_filing_data.dci_id
+  GROUP BY dci_id;

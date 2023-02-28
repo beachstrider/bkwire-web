@@ -1,0 +1,53 @@
+image: docker:20.10.16
+
+variables:
+  # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_TLS_CERTDIR: "/certs"
+
+services:
+  - docker:20.10.16-dind
+  
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+build_flask:
+  image:
+    name: registry.gitlab.com/1337its/automation/gehry
+  stage: build
+  only:
+    changes:
+      - docker/flask_api/**/*
+    refs:
+      - development
+      - staging
+      - production
+  script:
+    - python /src/gehry.py --build-containers --env $CI_COMMIT_REF_NAME --build-targets flask-api
+
+build_frontend:
+  image:
+    name: registry.gitlab.com/1337its/automation/gehry
+  stage: build
+  only:
+    changes:
+      - frontend/**/*
+      - docker/nginx/**/*
+    refs:
+      - development
+      - staging
+      - production
+  script:
+    - python /src/gehry.py --build-containers --env $CI_COMMIT_REF_NAME --build-targets frontend
+
+deploy:
+  image:
+    name: registry.gitlab.com/1337its/automation/gehry
+  stage: deploy
+  only:
+    refs:
+      - development
+      - staging
+      - production
+  script:
+    - python /src/gehry.py --deploy-stack --env $CI_COMMIT_REF_NAME

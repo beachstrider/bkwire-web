@@ -1,0 +1,62 @@
+SELECT `estimated_creditors`.`min` as `creditor_min`, `estimated_creditors`.`max` as `creditor_max`, `estimated_assets`.`min` as `assets_min`, `estimated_assets`.`max` as assets_max, `estimated_liabilities`.`min` as `liabilities_min`, `estimated_liabilities`.`max` as `liabilities_max`, `bankruptcy_filing_data`.`case_name`, `bankruptcy_filing_data`.`cs_chapter`, DATE_FORMAT(`bankruptcy_filing_data`.`date_added`, '%Y-%m-%d') as date_added, `bankruptcy_filing_data`.`date_filed` as date_filed, `industry_desc`.`naics_desc` as `industry`, `bankruptcy_filing_data`.`dci_id`, `cities_extended`.`state_code`, `cities_extended`.`city`
+    FROM `bankruptcy_201_data`
+      LEFT JOIN `estimated_creditors` ON `bankruptcy_201_data`.`estimated_creditors` = `estimated_creditors`.`id`
+      LEFT JOIN `estimated_assets` ON `bankruptcy_201_data`.`estimated_assets` = `estimated_assets`.`id`
+      LEFT JOIN `estimated_liabilities` ON `bankruptcy_201_data`.`estimated_liabilities` = `estimated_liabilities`.`id`
+      LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_201_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+      LEFT JOIN `companies` ON `bankruptcy_filing_data`.`case_name` = `companies`.`name`
+      LEFT JOIN `industry_desc` ON `companies`.`industry_id` = `industry_desc`.`id`
+      LEFT JOIN `company_information` ON `bankruptcy_filing_data`.`dci_id` = `company_information`.`id`
+      LEFT JOIN `cities_extended` ON `company_information`.`company_zip` = `cities_extended`.`zip`
+      LEFT JOIN `bankruptcies_watchlist` ON `bankruptcy_filing_data`.`dci_id` = `bankruptcies_watchlist`.`did`
+    WHERE
+    `bankruptcies_watchlist`.`user_id` = '{{bk_uid}}'
+
+    {%- if bk_filters %}
+    {% set temp = bk_filters.pop(0) -%}
+    AND {{temp['key']}} like '%{{temp['val']}}%'
+    {%- endif -%}
+
+    {%- if bk_filters_industries %}
+    AND ({% set temp = bk_filters_industries.pop(0) -%}
+    {{temp['key']}} = {{temp['val']}}
+    {%- for i in bk_filters_industries %}
+    OR {{i['key']}} = {{i['val']}}
+    {%- endfor -%})
+    {%- endif -%}
+
+    {%- if bk_filters_asset %}
+    AND ({% set temp = bk_filters_asset.pop(0) -%}
+    {{temp['key']}} = {{temp['val']}}
+    {%- for i in bk_filters_asset %}
+    OR {{i['key']}} = {{i['val']}}
+    {%- endfor -%})
+    {%- endif -%}
+
+    {%- if bk_filters_creditor %}
+    AND ({% set temp = bk_filters_creditor.pop(0) -%}
+    {{temp['key']}} = {{temp['val']}}
+    {%- for i in bk_filters_creditor %}
+    OR {{i['key']}} = {{i['val']}}
+    {%- endfor -%})
+    {%- endif -%}
+
+    {%- if bk_filters_liability %}
+    AND ({% set temp = bk_filters_liability.pop(0) -%}
+    {{temp['key']}} = {{temp['val']}}
+    {%- for i in bk_filters_liability %}
+    OR {{i['key']}} = {{i['val']}}
+    {%- endfor -%})
+    {%- endif %}
+
+    {%- if bk_filters_chapter %}
+    AND ({% set temp = bk_filters_chapter.pop(0) -%}
+    {{temp['key']}} = {{temp['val']}}
+    {%- for i in bk_filters_chapter %}
+    OR {{i['key']}} = {{i['val']}}
+    {%- endfor -%})
+    {%- endif %}
+
+    ORDER BY {{kwargs['sort_column'][0]}} {{kwargs['sort_order'][0]}}
+    LIMIT {{kwargs['page_size'][0]}}
+    OFFSET {{kwargs['offset']}};

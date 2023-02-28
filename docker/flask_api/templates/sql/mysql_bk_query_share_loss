@@ -1,0 +1,9 @@
+SELECT `bankruptcy_204206_data`.`id`, `bankruptcy_204206_data`.`creditor_name`, `cities_extended`.`state_code`, `cities_extended`.`city`, `industry_desc`.`naics_desc` as industry, CONCAT('$',FORMAT(`bankruptcy_204206_data`.`unsecured_claim`,0)) as unsecured_claim, DATE_FORMAT(`bankruptcy_filing_data`.`date_filed`, '%m-%d') as date_filed, `bankruptcy_filing_data`.`case_name`, `bankruptcy_filing_data`.`dci_id`, if (`companies_watchlist`.`id` IS NOT NULL AND `companies_watchlist`.`user_id` = '235', True, False) AS is_company_watchlisted
+    FROM `bankruptcy_204206_data`
+      LEFT JOIN `cities_extended` ON `bankruptcy_204206_data`.`creditor_zip` = `cities_extended`.`zip`
+      LEFT JOIN `companies` ON `bankruptcy_204206_data`.`creditor_name` = `companies`.`name`
+      LEFT JOIN `industry_desc` ON `companies`.`industry_id` = `industry_desc`.`id`
+      LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_204206_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+      LEFT JOIN `companies_watchlist` ON `companies_watchlist`.`id` = `bankruptcy_204206_data`.`id`
+    WHERE 1
+    AND `bankruptcy_204206_data`.`id` = {{lossid}}

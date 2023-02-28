@@ -1,0 +1,1 @@
+SELECT * FROM bankruptcy_filing_data WHERE dci_id = '{{kwargs['dci_id'][0]}}';

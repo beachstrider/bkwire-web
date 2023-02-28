@@ -1,0 +1,50 @@
+security:
+- bearerAuth: []
+
+tags:
+  - notifications
+summary: delete notifications based on filters supplied
+description: deletes the supplied notification ID as per the filters supplied
+
+requestBody:
+  required: true
+  content:
+    application/x-www-form-urlencoded:
+      schema:
+        type: object
+        properties:
+          status:
+            required: true
+            type: string
+            description: Message Status
+            enum:
+              - all
+              - read
+              - unread
+          type:
+            required: true
+            type: string
+            description: Message Type
+            enum:
+              - bk
+              - loss
+              - system
+              - all            
+          limit:
+            required: false
+            type: integer
+            description: Limit Results
+
+responses:
+  200:
+    description: Successful response
+    content: {}
+  401:
+    description: Unauthorized Request
+    content: {}
+  400:
+    description: Bad Request
+    content: {}
+  500:
+    description: Internal Server Error
+    content: {}

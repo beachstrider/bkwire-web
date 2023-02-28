@@ -1,0 +1,6 @@
+SELECT docket_table.id, entry_date, pages, docs, doc_url, activity, case_id, bkw_files.file_type 
+FROM docket_table 
+JOIN docket_entry_file_links ON docket_entry_file_links.docket_entry_id = docket_table.id
+JOIN bkw_files ON bkw_files.de_file_links_id = docket_entry_file_links.id
+WHERE case_id = '{{kwargs['id'][0]}}' 
+ORDER BY case_id;

@@ -1,0 +1,43 @@
+{
+    "content": [
+        {
+            "courtId": "flsbk",
+            "caseId": "800787",
+            "caseYear": "2023",
+            "caseNumber": "11357",
+            "caseOffice": "1",
+            "caseType": "bk",
+            "caseTitle": "Case Marine Construction International, LLC",
+            "dateFiled": "2023-02-21",
+            "bankruptcyChapter": "7",
+            "dispositionMethod": "",
+            "jointDispositionMethod": "",
+            "jointBankruptcyFlag": "n",
+            "mdlCourtId": "",
+            "mdlExtension": "",
+            "mdlLitType": "",
+            "mdlStatus": "",
+            "natureOfSuit": "",
+            "mdlJudgeLastName": "",
+            "mdlTransferee": "",
+            "mdlTransfereeDistrict": "",
+            "civilCtoNumber": "",
+            "civilStatDisposition": "",
+            "civilStatInitiated": "",
+            "civilStatTerminated": "",
+            "civilTransferee": "",
+            "caseLink": "https://ecf.flsb.uscourts.gov//cgi-bin/iqquerymenu.pl?800787",
+            "caseNumberFull": "1:2023bk11357"
+        }        
+    ],
+    "receipt": {
+        "billablePages": 17,
+        "fee": 1.7000000000000002,
+        "loginId": "Chrisb7712",
+        "clientCode": "",
+        "firmId": "",
+        "search": "All Courts; Date Filed 02/21/2023 to 02/22/2023; Chapter 7, 11; Batch",
+        "description": "All Court Types Case Search",
+        "csoId": 3495292
+    }
+}

@@ -1,0 +1,10 @@
+SELECT `users`.*,GROUP_CONCAT(industry_naics_code) as industry_naics_code,
+	   (SELECT GROUP_CONCAT(member_email_address) 
+	    FROM `user_team`
+		WHERE `principal_email_address` = `users`.`email_address`
+		GROUP BY `principal_email_address`) as team
+FROM `users`
+	LEFT JOIN `users_industries` ON `users_industries`.`user_id` = `users`.`id`
+WHERE id = '{{user_id}}'
+GROUP BY id
+ORDER BY count(id);

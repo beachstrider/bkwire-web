@@ -1,0 +1,6 @@
+SELECT name, file_type, docket_entry_name, docket_entry_link, docket_entry_id
+FROM bkw_files
+JOIN bankruptcy_filing_data ON bankruptcy_filing_data.id = bkw_files.bfd_id
+JOIN docket_entry_file_links ON docket_entry_file_links.id = bkw_files.de_file_links_id
+WHERE bankruptcy_filing_data.dci_id = {{case_id}} AND (bkw_files.file_type = 'petition' OR bkw_files.file_type = 'creditors')
+GROUP BY docket_entry_id;

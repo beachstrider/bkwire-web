@@ -1,0 +1,41 @@
+security:
+- bearerAuth: []
+
+tags:
+  - share
+summary: share a case with email address
+description: supply email address to this endpoint to share case details
+
+parameters:
+- name: email_address
+  in: query
+  description: Notification status
+  schema:
+    type: string
+
+- name: dcid
+  in: query
+  description: docket id of case we share
+  schema:
+    type: integer
+
+- name: comment
+  in: query
+  description: Notification status
+  schema:
+    type: string
+    default: 'null'
+
+responses:
+  200:
+    description: Successful response
+    content: {}
+  401:
+    description: Unauthorized Request
+    content: {}
+  400:
+    description: Bad Request
+    content: {}
+  500:
+    description: Internal Server Error
+    content: {}

@@ -1,0 +1,39 @@
+security:
+- bearerAuth: []
+
+tags:
+  - pdf form
+summary: generates the pdf presigned url for retrieval
+description: returned url is good for 10 mins and view expires
+
+parameters:
+- name: id
+  in: query
+  description: Return Case PDF from Presigned URL
+  schema:
+    type: integer
+responses:
+  200:
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          type: string
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string

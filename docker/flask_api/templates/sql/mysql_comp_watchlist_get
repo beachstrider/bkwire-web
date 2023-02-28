@@ -1,0 +1,38 @@
+SELECT `bankruptcy_204206_data`.`id`, `bankruptcy_204206_data`.`creditor_name`, `cities_extended`.`state_code`, `cities_extended`.`city`, `industry_desc`.`naics_desc` as industry, `bankruptcy_204206_data`.`unsecured_claim`, DATE_FORMAT(`bankruptcy_filing_data`.`date_added`, '%Y-%m-%d') as date_added, `bankruptcy_filing_data`.`date_filed` as date_filed, `bankruptcy_filing_data`.`case_name`, `bankruptcy_filing_data`.`dci_id`
+    FROM `bankruptcy_204206_data`
+      LEFT JOIN `cities_extended` ON `bankruptcy_204206_data`.`creditor_zip` = `cities_extended`.`zip`
+      LEFT JOIN `companies` ON `bankruptcy_204206_data`.`creditor_name` = `companies`.`name`
+      LEFT JOIN `industry_desc` ON `companies`.`industry_id` = `industry_desc`.`id`
+      LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_204206_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+      LEFT JOIN `companies_watchlist` ON `bankruptcy_204206_data`.`id` = `companies_watchlist`.`id`
+    WHERE
+    `companies_watchlist`.`user_id` = '{{user_id}}'
+
+    {%- if loss_filters_search %}
+    {% set temp = loss_filters_search.pop(0) -%}
+    AND ({{temp['key']}} like '%{{temp['val']}}%'
+    OR 'case_name' like '%{{temp['val']}}%')
+    {%- endif -%}
+
+    {%- if naics_filters %}
+    AND ({% set temp = naics_filters.pop(0) -%}
+    {{temp['key']}} = {{temp['val']}}
+    {%- for i in naics_filters %}
+    OR {{i['key']}} = {{i['val']}}
+    {%- endfor -%})
+    {%- endif -%}
+
+    {%- if loss_filters_unsecured_values -%}
+    {%- for i in loss_filters_unsecured_values %}
+    AND unsecured_claim {{i['sign']}} {{i['val']}}
+    {%- endfor -%}
+    {% endif %}
+
+    {%- if loss_filters_dc_id -%}
+    {%- for i in loss_filters_dc_id %}
+    AND `bankruptcy_filing_data`.`dci_id` = {{kwargs['id'][0]}}
+    {%- endfor -%}
+    {% endif %}
+    ORDER BY {{kwargs['sort_column'][0]}} {{kwargs['sort_order'][0]}}
+    LIMIT {{kwargs['page_size'][0]}}
+    OFFSET {{kwargs['offset']}};

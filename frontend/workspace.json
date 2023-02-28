@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "bkwire": "apps/bkwire",
+    "bkwire-e2e": "apps/bkwire-e2e"
+  }
+}

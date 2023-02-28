@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#bks {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#bks td, #bks th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#bks tr:nth-child(even){background-color: #f2f3f3;}
+
+#bks tr:hover {background-color: #ddd;}
+
+#bks th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #2B4489;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+
+<h2><a href="https://BKwire.com/">BKwire Loss Alert</a></h2>
+<h3>The below company was identified in the following bankruptcy</h3>
+
+<br><br>
+<table id=bks style="width:65%">
+  <caption style="text-align:left"><i>**Company listed has NOT filed for bankruptcy, only took a loss during Bankruptcy<i/></caption>
+  <tr>
+    <th>Date</th>
+    <th>Company</th>
+    <th>Industry</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Bankruptcy</th>
+    <th>Loss Amount</th>
+  </tr>
+  {%- for i in loss_data %}
+  {% if i['creditor_name']|length < 50 %}
+  <tr>
+    <td>{{i['date_filed']}}</td>
+    <td><a href="https://BKwire.com/view/bankruptcy/{{i['dci_id']}}">{{i['creditor_name']}}</a></td>
+    <td>{{i['industry']}}</td>
+    <td>{{i['city']}}</td>
+    <td>{{i['state_code']}}</td>
+    <td>{{i['case_name']}}</td>
+    <td>{{i['unsecured_claim']}}</td>
+  </tr>
+  {%- endif -%}
+  {%- endfor -%}
+</table>
+<p>You have subscribed to BKwire loss alerts.</p>
+[[trackingImage]]
+</body>
+</html>

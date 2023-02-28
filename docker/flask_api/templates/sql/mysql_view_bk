@@ -1,0 +1,17 @@
+SELECT `estimated_creditors`.`min` as `creditor_min`, `estimated_creditors`.`max` as `creditor_max`, `estimated_assets`.`min` as `assets_min`, `estimated_assets`.`max` as `assets_max`, `estimated_liabilities`.`min` as `liabilities_min`, `estimated_liabilities`.`max` as `liabilities_max`, `bankruptcy_filing_data`.`case_name`, `bankruptcy_filing_data`.`case_number`, `bankruptcy_filing_data`.`cs_chapter`, `bankruptcy_filing_data`.`date_filed` as date_filed, DATE_FORMAT(`bankruptcy_filing_data`.`date_added`, '%Y-%m-%d') as date_added, `industry_desc`.`naics_desc` as `industry`, `cities_extended`.`state_code`, `cities_extended`.`city`, `company_information`.`company_address`, `company_ein_number`.`ein`, `bk_courts`.`court_name_district` as `court_id`,`bkw_files`.`name` as `pdf_filename`, if (`bankruptcies_watchlist`.`id` IS NOT NULL AND `bankruptcies_watchlist`.`user_id` = '{{bk_uid}}', True, False) AS is_bankruptcy_watchlisted
+    FROM `bankruptcy_201_data`
+      LEFT JOIN `estimated_creditors` ON `bankruptcy_201_data`.`estimated_creditors` = `estimated_creditors`.`id`
+      LEFT JOIN `estimated_assets` ON `bankruptcy_201_data`.`estimated_assets` = `estimated_assets`.`id`
+      LEFT JOIN `estimated_liabilities` ON `bankruptcy_201_data`.`estimated_liabilities` = `estimated_liabilities`.`id`
+      LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_201_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+      LEFT JOIN `companies` ON `bankruptcy_filing_data`.`case_name` = `companies`.`name`
+      LEFT JOIN `industry_desc` ON `companies`.`industry_id` = `industry_desc`.`id`
+      LEFT JOIN `company_information` ON `bankruptcy_filing_data`.`dci_id` = `company_information`.`id`
+      LEFT JOIN `cities_extended` ON `company_information`.`company_zip` = `cities_extended`.`zip`
+      LEFT JOIN `company_ein_number` ON `bankruptcy_filing_data`.`case_name` = `company_ein_number`.`name`
+      LEFT JOIN `bk_courts` ON `bankruptcy_filing_data`.`court_id` = `bk_courts`.`bk_court_id`
+      LEFT JOIN `bankruptcies_watchlist` ON `bankruptcies_watchlist`.`did` = `bankruptcy_filing_data`.`dci_id`
+      LEFT JOIN `users` ON `bankruptcies_watchlist`.`user_id` = `users`.`id`
+      LEFT JOIN `bkw_files` ON `bankruptcy_201_data`.`filing_id` = `bkw_files`.`bfd_id`
+    WHERE `bankruptcy_filing_data`.`dci_id` = '{{kwargs['id'][0]}}' AND `bkw_files`.`file_type` =  'petition'
+    GROUP BY `bankruptcy_filing_data`.`dci_id`;

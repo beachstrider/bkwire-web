@@ -1,0 +1,4 @@
+SELECT SUM(`bankruptcy_204206_data`.`unsecured_claim`) as total_loss
+    FROM `bankruptcy_204206_data`
+      LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_204206_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+    WHERE `bankruptcy_filing_data`.`dci_id` = '{{kwargs['id'][0]}}';

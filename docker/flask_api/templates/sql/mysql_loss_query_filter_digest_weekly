@@ -1,0 +1,11 @@
+
+  SELECT `bankruptcy_204206_data`.`creditor_name` AS creditor_name, `cities_extended`.`state_code`, CONCAT('$',FORMAT(`bankruptcy_204206_data`.`unsecured_claim`,0)) as unsecured_claim, `bankruptcy_filing_data`.`case_name` FROM `bankruptcy_204206_data`
+        LEFT JOIN `cities_extended` ON `bankruptcy_204206_data`.`creditor_zip` = `cities_extended`.`zip`
+        LEFT JOIN `companies` ON `bankruptcy_204206_data`.`creditor_name` = `companies`.`name`
+        LEFT JOIN `industry_desc` ON `companies`.`industry_id` = `industry_desc`.`id`
+        LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_204206_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+        LEFT JOIN `companies_watchlist` ON `companies_watchlist`.`id` = `bankruptcy_204206_data`.`id`
+      WHERE `bankruptcy_204206_data`.`unsecured_claim` > '10000'
+    {%- if sdf %}
+    AND date_filed between '{{sdf}}' and '{{edf}}'
+    {%- endif %}

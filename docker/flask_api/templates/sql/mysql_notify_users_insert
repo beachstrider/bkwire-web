@@ -1,0 +1,2 @@
+INSERT INTO `user_notifications` (`user_id`, `status`, `title`, `body`, `type`, `bk_id`, `loss_id`)
+VALUES ('{{userid}}', '{{status}}', '{{title}}', '{{body}}', '{{type}}', '{{bkid}}', '{{actid}}');

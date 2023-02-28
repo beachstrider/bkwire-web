@@ -1,0 +1,5 @@
+project = 'bkwire'
+staging_deploy_hook = '13df96cf-e9f0-4055-8eb1-35452de2feee'
+## bkw-flaskapi
+[[bkw-flaskapi]]
+staging_service_id = 'xb4jobs74tnzarlbtb87nu1hh'

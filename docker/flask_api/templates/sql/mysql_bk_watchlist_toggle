@@ -1,0 +1,1 @@
+UPDATE `bankruptcies_watchlist` SET `alerts` = '{{bool_var}}' WHERE `bankruptcies_watchlist`.`did` = '{{kwargs['id']}}';

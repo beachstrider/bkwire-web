@@ -1,0 +1,73 @@
+{
+  "root": "apps/bkwire",
+  "sourceRoot": "apps/bkwire/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/bkwire",
+        "index": "apps/bkwire/src/index.html",
+        "baseHref": "/",
+        "main": "apps/bkwire/src/main.tsx",
+        "polyfills": "apps/bkwire/src/polyfills.ts",
+        "tsConfig": "apps/bkwire/tsconfig.app.json",
+        "assets": [
+          "apps/bkwire/src/favicon.ico",
+          "apps/bkwire/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/bkwire/src/environments/environment.ts",
+              "with": "apps/bkwire/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "bkwire:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "bkwire:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/bkwire/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/bkwire"],
+      "options": {
+        "jestConfig": "apps/bkwire/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
+

@@ -1,92 +1,84 @@
-# bkw-integrate-stripe
-
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/1337its/projects/bkw-integrate-stripe.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/1337its/projects/bkw-integrate-stripe/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
 ## Name
-Choose a self-explaining name for your project.
+BKWire
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+This project is designed to pull bankruptcy data sets in the form of PDF, extract, parse and save this dataset into a relational database. The PDF's are downloaded once and stored in S3 for future reference and use by the end-user. The dataset is then cached using REDIS and made available using a Flask API.
+## Features
+- Scrape PACER
+- Download Corporate Bankruptcy Filings(PDF)
+- Extract, Parse, Save and Cache - Text from images(Textract)
+- Provides a simple API endpoint to access the necessary data elements for the Application
 
 ## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Visual reference can be located at https://busbk.com, along with the associated wireframes and mockups upon request
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Mirco Services
+1337ITS leverages the container strategy for all services to date. In the root of the repo is a directroy `docker` which houses all micro services that make up the BKWire application. Each container is built and stored in the private registry and deployed using docker-compose file found at the root of the repository. Adding a service under the `docker` folder and/or editing files nested under `docker` trigger container builds and pushes to the registry.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Once a new docker service is added, edit the docker-compose file to guide the deployment of the new service. This will generate a new "stack" within portainer keeping all micros services tied together for the application.
+
+## API Installation for local use only
+To get started with this project locally, you will need the ability to run Docker containers. https://www.docker.com/get-started
+Additionally, you will need username and token for private registry authentication(Blake will supply those upon request)
+1. Clone this repo
+1. Navigate to the root of the project
+1. Login to Gitlab private container registry
+```
+docker login registry.gitlab.com
+```
+1. create environment-vars.env
+```
+Get these values from cbford@1337itsolutions.com
+```
+1. run the following command
+```
+docker-compose up
+```
+The above command will run the `docker-compose.yml` file along with `docker-compose.override.yml` allowing you to customize the local development environments as needed.
+
+## Environment
+DEV - https://bkwire.1337itsolutions.com
+DEV API - https://flask-api.1337itsolutions.com/apidocs
+
+
+STG - https://stg.bkwire.com
+STG API - https://stg-api.bkwire.com/apidocs
+
+
+PRD - https://bkwire.com
+PRD API - https://api.bkwire.com/apidocs
+
+
+
+## Secrets
+Reach out to cbford@1337itsolutions.com for values
+
+## Environment vars
+Environment vars can be placed in the devops/{env} folder - each folder maps to an environment and will get added to the container at run time. You can append to the current vars.env or create a separate file, the deploy script will pick up any files ending in: `.env`
+
+## Branching Strategy
+1337ITS Uses a promotion strategy to ensure the same code is ran across all environments. Feature branches should be merged into `development`, from there `development` gets merged into `staging` and staging merged into `production`.  Each merge will trigger a build and deploy respective to the environment/branch the commit/merge was applied.
+
+We use protected branches to prevent divergent branches and only allow commits to `feature` and/or `development`. From there promotion is only allowed through merge requests.
+
+## Deployments
+Deployments are done through a custom python script rolled into a container(`micro service`). This allows for full customized deployments onto the Docker Swarm cluster. This method provides the ability for 0 downtime deployments as services are deployed across a fleet of nodes, ensuring the new service comes up clean before retiring the previous version. These nodes are environment based reducing the blast radius in the event of failure or issue with the deployment.
+
+Deploys will be based on `docker-compose.{ENV}.yml` allowing for stack customization across environments respectively.
 
 ## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Please reach out to Blake Ford for any infrastructure, API and automation requirements. cbford@1337itsolutions.com or on SLACK - `proj-bcw`
 
 ## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+-Create TOML project file for more customization
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+-Update gehry service with python `click`
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+[C. Blake Ford](https://www.linkedin.com/in/blake-ford-1337its/)
 
 ## License
-For open source projects, say how it is licensed.
+GNU General Public License (GPL)
 
 ## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Currently in development

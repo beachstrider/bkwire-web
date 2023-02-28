@@ -1,0 +1,39 @@
+security:
+- bearerAuth: []
+
+tags:
+  - view
+summary: docket table with recent case updates
+description: call to return cached html table of docket table
+
+parameters:
+- name: id
+  in: query
+  description: Return PACER HTML table from DC ID
+  schema:
+    type: integer
+responses:
+  200:
+    description: Successful response
+    content:
+      text/html:
+        schema:
+          type: string
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string

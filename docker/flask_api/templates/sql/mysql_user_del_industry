@@ -1,0 +1,1 @@
+DELETE FROM `users_industries` WHERE `user_id` = '{{user_id}}';

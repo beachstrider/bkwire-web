@@ -1,0 +1,44 @@
+{
+    "group": {
+       "default": {
+            "targets": ["flask-api", "frontend"]
+        } 
+    },
+    "target": {
+       "flask-api": {
+          "context": "./docker/flask_api",
+          "dockerfile": "Dockerfile",
+          "tags": [
+            "registry.gitlab.com/1337its/projects/bkwire/${ENV}-flask_api:latest"
+          ]
+        }
+    },
+    "target": {
+        "frontend": {
+           "context": ".",
+           "dockerfile": "./docker/nginx/Dockerfile",
+           "tags": [
+             "registry.gitlab.com/1337its/projects/bkwire/${ENV}-nginx:latest"
+           ],
+           "args": {
+             "BUILD": "${FLASK_ENV}",
+             "AUTH0_DOMAIN": "${AUTH0_DOMAIN}",
+             "AUTH0_CLIENT_ID": "${AUTH0_CLIENT_ID}",
+             "CLIENT_SECRET": "${CLIENT_SECRET}",
+             "AUTH0_AUDIENCE": "${AUTH0_AUDIENCE}",
+             "AUTH0_SCOPE": "${AUTH0_SCOPE}",             
+             "AWS_ACCESS_KEY_ID": "${AWS_ACCESS_KEY_ID}",
+             "AWS_SECRET_ACCESS_KEY": "${AWS_SECRET_ACCESS_KEY}",
+             "API_URL": "${API_URL}",
+             "STRIPE_API_KEY": "${STRIPE_API_KEY}",
+             "STRIPE_TABLE_ID": "${STRIPE_TABLE_ID}",
+             "STRIPE_TABLE_KEY": "${STRIPE_TABLE_KEY}",
+             "STRIPE_WEBHOOK_SECRET": "${STRIPE_WEBHOOK_SECRET}",
+             "STRIPE_RETURN_URL": "${STRIPE_RETURN_URL}",
+             "STRIPE_BASIC_PRICE_ID": "${STRIPE_BASIC_PRICE_ID}",
+             "STRIPE_PRO_PRICE_ID": "${STRIPE_PRO_PRICE_ID}",
+             "STRIPE_MVP_PRICE_ID": "${STRIPE_MVP_PRICE_ID}"                                                
+           }
+        }
+    }          
+}

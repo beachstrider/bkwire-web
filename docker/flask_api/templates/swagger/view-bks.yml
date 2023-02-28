@@ -1,0 +1,41 @@
+security:
+- bearerAuth: []
+
+tags:
+  - view
+summary: bankruptcy detail information
+description: provide a dc_id to get a detailed view on a bankruptcy
+
+parameters:
+- name: id
+  in: query
+  description: Return BK View Data for specific given IDs
+  schema:
+    type: integer
+responses:
+  200:
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string

@@ -1,0 +1,72 @@
+version: "3.7"
+services:
+    web:
+      image: registry.gitlab.com/1337its/projects/bkwire/stg-nginx:latest
+      hostname: stg-bkw-nginx
+      restart: unless-stopped
+      tty: true
+      volumes:
+        - stg-nginx:/var/log/nginx/
+      networks:
+        - agent-network
+        - traefik-public
+      depends_on:
+          - flaskapi
+      command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+      deploy:
+        placement:
+          constraints:
+            - node.labels.bkwire-node-dev == true
+        labels:
+          - traefik.enable=true
+          - traefik.docker.network=traefik-public
+          - traefik.constraint-label=traefik-public
+          - traefik.http.routers.stg-web-http.rule=Host(`stg.bkwire.com`)
+          - traefik.http.routers.stg-web-http.entrypoints=http
+          - traefik.http.routers.stg-web-http.middlewares=https-redirect
+          - traefik.http.routers.stg-web-https.rule=Host(`stg.bkwire.com`)
+          - traefik.http.routers.stg-web-https.entrypoints=https
+          - traefik.http.routers.stg-web-https.tls=true
+          - traefik.http.routers.stg-web-https.tls.certresolver=le
+          - traefik.http.services.stg-web.loadbalancer.server.port=80
+
+    flaskapi:
+      image: registry.gitlab.com/1337its/projects/bkwire/stg-flask_api:latest
+      hostname: stg-bkw-flaskapi
+      restart: unless-stopped
+      tty: true
+      volumes:
+        - stg-flaskapp:/app/logs
+        - stg-script_data:/script/data
+      networks:
+        - agent-network
+        - traefik-public
+      command: uwsgi --ini /app/uwsgi.ini
+      deploy:
+        placement:
+          constraints:
+            - node.labels.bkwire-node-dev == true
+        labels:
+          - traefik.enable=true
+          - traefik.docker.network=traefik-public
+          - traefik.constraint-label=traefik-public
+          - traefik.http.routers.stg-flaskapi-http.rule=Host(`stg-api.bkwire.com`)
+          - traefik.http.routers.stg-flaskapi-http.entrypoints=http
+          - traefik.http.routers.stg-flaskapi-http.middlewares=https-redirect
+          - traefik.http.routers.stg-flaskapi-https.rule=Host(`stg-api.bkwire.com`)
+          - traefik.http.routers.stg-flaskapi-https.entrypoints=https
+          - traefik.http.routers.stg-flaskapi-https.tls=true
+          - traefik.http.routers.stg-flaskapi-https.tls.certresolver=le
+          - traefik.http.services.stg-flaskapi.loadbalancer.server.port=5000
+
+networks:
+  agent-network:
+    attachable: true
+  traefik-public:
+    external: true
+
+volumes:
+  stg-db_data:
+  stg-script_data:
+  stg-flaskapp:
+  stg-nginx:

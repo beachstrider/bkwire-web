@@ -1,0 +1,399 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <style type="text/css" data-premailer="ignore">
+    @media only screen and (max-width:480px) {
+      .footer-main-width {
+        width: 100% !important;
+      }
+
+      .footer-mobile-hidden {
+        display: none !important;
+      }
+
+      .footer-mobile-hidden {
+        display: none !important;
+      }
+
+      .footer-column {
+        display: block !important;
+      }
+
+      .footer-mobile-stack {
+        display: block !important;
+      }
+
+      .footer-mobile-stack-padding {
+        padding-top: 3px;
+      }
+    }
+
+    /* IE: correctly scale images with w/h attbs */
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    .layout {
+      min-width: 100%;
+    }
+
+    table {
+      table-layout: fixed;
+    }
+
+    .shell_outer-row {
+      table-layout: auto;
+    }
+
+    /* Gmail/Web viewport fix */
+    u+.body .shell_outer-row {
+      width: 700px;
+    }
+
+    @media screen {
+      @font-face {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+      }
+    }
+
+    /* LIST AND p STYLE OVERRIDES */
+    .text .text_content-cell p {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 0;
+    }
+
+    .text .text_content-cell ul,
+    .text .text_content-cell ol {
+      padding: 0;
+      margin: 0 0 0 40px;
+    }
+
+    .text .text_content-cell li {
+      padding: 0;
+      margin: 0;
+      /* line-height: 1.2; Remove after testing */
+    }
+
+    /* Text Link Style Reset */
+    a {
+      text-decoration: underline;
+    }
+
+    /* iOS: Autolink styles inherited */
+    a[x-apple-data-detectors] {
+      text-decoration: underline !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+      color: inherit !important;
+    }
+
+    /* FF/Chrome: Smooth font rendering */
+    .text .text_content-cell {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style> <!--[if gte mso 9]> <style id="ol-styles"> 
+/* OUTLOOK-SPECIFIC STYLES */ li { text-indent: -1em; padding: 0; margin: 0; /* line-height: 1.2; Remove after testing */ } ul, ol { padding: 0; margin: 0 0 0 40px; } p { margin: 0; padding: 0; margin-bottom: 0; } 
+</style> <![endif]-->
+  <style>
+    @media only screen and (max-width:480px) {
+      .button_content-cell {
+        padding-top: 10px !important;
+        padding-right: 20px !important;
+        padding-bottom: 10px !important;
+        padding-left: 20px !important;
+      }
+
+      .button_border-row .button_content-cell {
+        padding-top: 10px !important;
+        padding-right: 20px !important;
+        padding-bottom: 10px !important;
+        padding-left: 20px !important;
+      }
+
+      .column .content-padding-horizontal {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+
+      .layout .column .content-padding-horizontal .content-padding-horizontal {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+      }
+
+      .layout .column .content-padding-horizontal .block-wrapper_border-row .content-padding-horizontal {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+
+      .dataTable {
+        overflow: auto !important;
+      }
+
+      .dataTable .dataTable_content {
+        width: auto !important;
+      }
+
+      .image--mobile-scale .image_container img {
+        width: auto !important;
+      }
+
+      .image--mobile-center .image_container img {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .layout-margin .layout-margin_cell {
+        padding: 0px 20px !important;
+      }
+
+      .layout-margin--uniform .layout-margin_cell {
+        padding: 20px 20px !important;
+      }
+
+      .scale {
+        width: 100% !important;
+        height: auto !important;
+      }
+
+      .stack {
+        display: block !important;
+        box-sizing: border-box;
+      }
+
+      .hide {
+        display: none !important;
+      }
+
+      u+.body .shell_outer-row {
+        width: 100% !important;
+      }
+
+      .socialFollow_container {
+        text-align: center !important;
+      }
+
+      .text .text_content-cell {
+        font-size: 16px !important;
+      }
+
+      .text .text_content-cell h1 {
+        font-size: 24px !important;
+      }
+
+      .text .text_content-cell h2 {
+        font-size: 20px !important;
+      }
+
+      .text .text_content-cell h3 {
+        font-size: 20px !important;
+      }
+
+      .text--sectionHeading .text_content-cell {
+        font-size: 24px !important;
+      }
+
+      .text--heading .text_content-cell {
+        font-size: 24px !important;
+      }
+
+      .text--dataTable .text_content-cell .dataTable .dataTable_content-cell {
+        font-size: 14px !important;
+      }
+
+      .text--dataTable .text_content-cell .dataTable th.dataTable_content-cell {
+        font-size: px !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="body template template--en-US" data-template-version="1.20.0" data-canonical-name="CPE-PT17831"
+  align="center"
+  style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; min-width: 100%; width: 100%; margin: 0px; padding: 0px;">
+  <div id="preheader"
+    style="color: transparent; display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+    <span data-entity-ref="preheader">Your colleague wants to share the below Bankruptcy with you</span></div>
+  <div id="tracking-image"
+    style="color: transparent; display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+    [[trackingImage]]</div>
+  <div class="shell" lang="en-US" style="background-color: #474747;">
+    <table class="shell_panel-row" width="100%" border="0" cellpadding="0" cellspacing="0"
+      style="background-color: #474747;" bgcolor="#474747">
+      <tr class="">
+        <td class="shell_panel-cell" style="" align="center" valign="top">
+          <table class="shell_width-row scale" style="width: 700px;" align="center" border="0" cellpadding="0"
+            cellspacing="0">
+            <tr>
+              <td class="shell_width-cell" style="padding: 15px 10px;" align="center" valign="top">
+                <table class="shell_content-row" width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td class="shell_content-cell"
+                      style="background-color: #FFFFFF; padding: 0; border: 0px solid #3e3e3e;" align="center"
+                      valign="top" bgcolor="#FFFFFF">
+                      <table class="layout layout--1-column" style="table-layout: fixed;" width="100%" border="0"
+                        cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td class="column column--1 scale stack" style="width: 100%;" align="center" valign="top">
+                            <div class="spacer" style="height: 30px; line-height: 30px;">&#x200a;</div>
+                            <table class="image image--padding-vertical image--mobile-scale image--mobile-center"
+                              width="100%" border="0" cellpadding="0" cellspacing="0">
+                              <tr>
+                                <td class="image_container content-padding-horizontal" align="left" valign="top"
+                                  style="padding: 10px 40px;"> <img data-image-content class="image_content" width="219"
+                                    src="https://files.constantcontact.com/1bb2b32c801/e685b02a-13d1-42fe-9e12-6b2925a99466.jpg"
+                                    alt="" style="display: block; height: auto; max-width: 100%;"> </td>
+                              </tr>
+                            </table>
+                            <table class="text text--padding-vertical" width="100%" border="0" cellpadding="0"
+                              cellspacing="0" style="table-layout: fixed;">
+                              <tr>
+                                <td class="text_content-cell content-padding-horizontal"
+                                  style="text-align: center; font-family: Arial,Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-height: 1.2; display: block; word-wrap: break-word; padding: 10px 40px;"
+                                  align="center" valign="top">
+                                  <p style="text-align: left; margin: 0;" align="left"><br></p>
+                                  <p style="text-align: left; margin: 0;" align="left"><a href="http://bkwire.com"
+                                      target="_blank"
+                                      style="font-family: Roboto, sans-serif; font-weight: bold; color: #2C74FF; text-decoration: none;">Business Impacted by Corporate Bankruptcy - Log In or Sign up to BKwire</a></p>
+                                  <p style="text-align: left; margin: 0;" align="left"><br></p>
+                                  <p style="text-align: left; margin: 0;" align="left"><span
+                                      style="font-family: Roboto, sans-serif; font-weight: bold;">{{user_data[0][0]['first_name']}} of
+                                      {{user_data[0][0]['company_name']}} wants to share the below Business impacted by corporate Bankruptcy
+                                      with you:&#xfeff;</span></p>
+                                  <p style="text-align: left; margin: 0;" align="left"><br></p>
+                                  <p style="text-align: left; margin: 0;" align="left"><span
+                                      style="font-family: Roboto, sans-serif; font-weight: bold;"> {{user_comment}} &#xfeff;</span></p>                                      
+                                </td>
+                              </tr>
+                            </table>
+                            <div class="spacer" style="line-height: 10px; height: 10px;">&#x200a;</div>
+                          </td>
+                        </tr>
+                      </table>
+                      <table class="layout layout--1-column" style="table-layout: fixed;" width="100%" border="0"
+                        cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td class="column column--1 scale stack" style="width: 100%;" align="center" valign="top">
+                            <table class="text text--dataTable text--padding-vertical" width="100%" border="0"
+                              cellpadding="0" cellspacing="0" style="table-layout: fixed;">
+                              <tr>
+                                <td class="text_content-cell content-padding-horizontal"
+                                  style="text-align: left; font-family: Arial,Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-height: 1.2; display: block; word-wrap: break-word; padding: 10px 40px;"
+                                  align="left" valign="top" data-purpose="dataTable">
+                                  <div class="dataTable dataTable--outerBorder dataTable--innerBorder">
+                                    <table class="dataTable_content"
+                                      style="width: 100%; min-width: 100%; background-color: #E9E9E9; border-collapse: collapse; font-family: Arial,Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; border: 1px solid #a6a6a6;"
+                                      width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#E9E9E9">
+                                      <tr>
+                                        <td class="dataTable_content-cell"
+                                          style="text-align: center; vertical-align: top; padding: 10px; border: 1px solid #a6a6a6;"
+                                          align="center" valign="top">
+                                          <p style="margin: 0;"><span
+                                              style="font-size: 10px; color: rgb(25, 25, 25); text-decoration: underline; font-family: Roboto, sans-serif; font-weight: bold;">Business Impacted</span>
+                                          </p>
+                                        </td>
+                                        <td class="dataTable_content-cell"
+                                          style="text-align: center; vertical-align: top; padding: 10px; border: 1px solid #a6a6a6;"
+                                          align="center" valign="top">
+                                          <p style="margin: 0;"><span
+                                              style="font-size: 10px; color: rgb(25, 25, 25); text-decoration: underline; font-family: Roboto, sans-serif; font-weight: bold;">BKwire
+                                              Zone</span></p>
+                                        </td>
+                                        <td class="dataTable_content-cell"
+                                          style="text-align: center; vertical-align: top; padding: 10px; border: 1px solid #a6a6a6;"
+                                          align="center" valign="top">
+                                          <p style="margin: 0;"><span
+                                              style="font-size: 10px; color: rgb(25, 25, 25); text-decoration: underline; font-family: Roboto, sans-serif; font-weight: bold;">Bankruptcy</span></p>
+                                        </td>
+                                        <td class="dataTable_content-cell"
+                                          style="text-align: center; vertical-align: top; padding: 10px; border: 1px solid #a6a6a6;"
+                                          align="center" valign="top">
+                                          <p style="margin: 0;"><span
+                                              style="font-size: 10px; color: rgb(25, 25, 25); text-decoration: underline; font-family: Roboto, sans-serif; font-weight: bold;">Loss</span>
+                                          </p>
+                                        </td>
+                                      </tr>
+                                      {%- for i in bk_data %}                                   
+                                      <tr>                                    
+                                        <td class="dataTable_content-cell"
+                                          style="text-align: center; vertical-align: top; padding: 10px; border: 1px solid #a6a6a6;"
+                                          align="center" valign="top">
+                                          <p style="margin: 0;"><span
+                                              style="font-size: 10px; font-family: Roboto, sans-serif;">{{i['creditor_name']}}
+                                            </span></p>
+                                        </td>
+                                        <td class="dataTable_content-cell"
+                                          style="text-align: center; vertical-align: top; padding: 10px; border: 1px solid #a6a6a6;"
+                                          align="center" valign="top">
+                                          <p style="margin: 0;"><span style="font-size: 11px;">{{i['industry']}}</span></p>
+                                        </td>
+                                        <td class="dataTable_content-cell"
+                                          style="text-align: center; vertical-align: top; padding: 10px; border: 1px solid #a6a6a6;"
+                                          align="center" valign="top">
+                                          <p style="margin: 0;"><span style="font-size: 11px;"><a href="https://BKwire.com/view/bankruptcy/{{i['dci_id']}}">{{i['case_name']}}</a></span></p>
+                                        </td>
+                                        <td class="dataTable_content-cell"
+                                          style="text-align: center; vertical-align: top; padding: 10px; border: 1px solid #a6a6a6;"
+                                          align="center" valign="top">
+                                          <p style="margin: 0;"><span style="font-size: 11px;">{{i['unsecured_claim']}}</span></p>
+                                        </td>
+                                      </tr>
+                                      {%- endfor -%}
+                                    </table>
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                      <table class="layout layout--1-column" style="table-layout: fixed;" width="100%" border="0"
+                        cellpadding="0" cellspacing="0">
+                        <tr>
+                          <td class="column column--1 scale stack" style="width: 100%;" align="center" valign="top">
+                            <table class="text text--padding-vertical" width="100%" border="0" cellpadding="0"
+                              cellspacing="0" style="table-layout: fixed;">
+                              <tr>
+                                <td class="text_content-cell content-padding-horizontal"
+                                  style="text-align: left; font-family: Arial,Verdana,Helvetica,sans-serif; color: #3E3E3E; font-size: 14px; line-height: 1.2; display: block; word-wrap: break-word; padding: 10px 40px;"
+                                  align="left" valign="top">
+                                  <p style="margin: 0;"><a href="http://www.bkwire.com" target="_blank"
+                                      style="font-family: Roboto, sans-serif; color: #2C74FF; font-weight: bold; text-decoration: none;">Please
+                                      login to BKwire for additional case information.</a></p>
+                                  <p style="margin: 0;"><br></p>
+                                  <p style="margin: 0;"><br></p>
+                                  <p style="margin: 0;"><span style="font-family: Roboto, sans-serif;">Safe
+                                      Selling,</span></p>
+                                  <p style="margin: 0;"><span style="font-family: Roboto, sans-serif;">The BKwire
+                                      Team</span></p>
+                                  <p style="margin: 0;"><span
+                                      style="font-family: Roboto, sans-serif;">www.bkwire.com</span></p>
+                                  <p style="margin: 0;"><br></p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+INSERT INTO `companies_watchlist` (`user_id`, `id`, `comp_slug`, `added_date`, `alerts`)
+VALUES ('{{user_id}}', '{{kwargs['id']}}', '{{comp_slug}}', CURRENT_TIMESTAMP, '1');

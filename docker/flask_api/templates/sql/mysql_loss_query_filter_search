@@ -1,0 +1,15 @@
+WITH myCTE AS (
+  SELECT `bankruptcy_204206_data`.`id`, `bankruptcy_filing_data`.`dci_id`, `bankruptcy_204206_data`.`creditor_name` AS creditor_name, `bankruptcy_204206_data`.`unsecured_claim`,
+  ROW_NUMBER() OVER(PARTITION BY `bankruptcy_filing_data`.`case_name` ORDER BY `bankruptcy_204206_data`.`unsecured_claim` desc) as row_count
+      FROM `bankruptcy_204206_data`
+        LEFT JOIN `cities_extended` ON `bankruptcy_204206_data`.`creditor_zip` = `cities_extended`.`zip`
+        LEFT JOIN `companies` ON `bankruptcy_204206_data`.`creditor_name` = `companies`.`name`
+        LEFT JOIN `industry_desc` ON `companies`.`industry_id` = `industry_desc`.`id`
+        LEFT JOIN `bankruptcy_filing_data` ON `bankruptcy_204206_data`.`filing_id` = `bankruptcy_filing_data`.`id`
+      WHERE 1
+      AND (`bankruptcy_204206_data`.`creditor_name` like '%{{kwargs['search'][0]}}%')
+)
+
+SELECT `id`,`dci_id`,`creditor_name`,`unsecured_claim` FROM myCTE
+    WHERE `row_count` <= {{kwargs['umax_results'][0]}}
+    LIMIT {{kwargs['page_size'][0]}};

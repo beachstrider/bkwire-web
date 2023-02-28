@@ -1,0 +1,135 @@
+security:
+- bearerAuth: []
+
+tags:
+  - watchlist
+summary: list bankruptcies in user watchlist
+description: supply this endpoint with filters to limit the results
+
+parameters:
+- name: page
+  in: query
+  description: The page number to start from for returned results
+    set.
+  schema:
+    minimum: 0
+    type: integer
+    default: 1
+- name: page_size
+  in: query
+  description: The numbers of items to return.
+  schema:
+    maximum: 100
+    minimum: 1
+    type: integer
+    default: 25
+- name: sort_column
+  in: query
+  description: The column to sort by.
+  schema:
+    type: string
+    default: date_filed
+    enum:
+      - case_name
+      - cs_chapter
+      - city
+      - state_code
+      - date_filed
+- name: sort_order
+  in: query
+  description: asc or desc sort order.
+  schema:
+    type: string
+    default: asc
+- name: search
+  in: query
+  description: filter by company name.
+  schema:
+    type: string
+- name: chapter_types
+  in: query
+  description: filter by chapter types.
+  schema:
+    type: array
+    items:
+      type: integer
+- name: creditor_ranges
+  in: query
+  description: filter by creditor range id.
+  schema:
+    type: array
+    items:
+      type: integer
+- name: asset_ranges
+  in: query
+  description: filter by asset range id.
+  schema:
+    type: array
+    items:
+      type: integer
+- name: liability_ranges
+  in: query
+  description: filter by liability range id.
+  schema:
+    type: array
+    items:
+      type: integer
+- name: industries
+  in: query
+  description: filter by industry.
+  schema:
+    type: array
+    items:
+      type: integer
+- name: start_date_filed
+  in: query
+  description: Start date for filter results YYYY-MM-DD
+  schema:
+    type: string
+- name: end_date_filed
+  in: query
+  description: End date for filter results YYYY-MM-DD
+  schema:
+    type: string
+- name: state_code
+  in: query
+  description: State code for filter results
+  schema:
+    type: string
+- name: city
+  in: query
+  description: city name for filter results
+  schema:
+    type: string
+responses:
+  200:
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              records:
+                type: object
+              count:
+                type: integer
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string

@@ -1,0 +1,4 @@
+SELECT DISTINCT arn, aws_topic_name_sub
+ FROM `aws_topic_information`
+	LEFT JOIN user_notify_companies ON aws_topic_information.name = user_notify_companies.aws_topic_name_sub
+WHERE user_notify_companies.track_id = '{{id}}';

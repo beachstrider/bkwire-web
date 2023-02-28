@@ -1,0 +1,2 @@
+INSERT INTO `{{user_notify_table}}` (`user_id`, `aws_sub_arn`, `aws_topic_name_sub`, `track_id`)
+VALUES ('{{user_id}}', '{{sub_arn}}', '{{topic_name_sub}}', '{{track_id}}');

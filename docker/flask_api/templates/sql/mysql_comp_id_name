@@ -1,0 +1,5 @@
+SELECT `companies`.`slug`, `bankruptcy_204206_data`.`id`
+    FROM `bankruptcy_204206_data`
+      LEFT JOIN `companies` ON `bankruptcy_204206_data`.`creditor_name` = `companies`.`name`
+    WHERE
+      `bankruptcy_204206_data`.`id` = '{{kwargs['id']}}'

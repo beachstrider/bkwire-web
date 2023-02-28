@@ -1,0 +1,6 @@
+SELECT name, file_type, docket_entry_name, docket_entry_link, docket_entry_id
+FROM purchases
+JOIN bkw_files ON bkw_files.id = purchases.idpurchases
+JOIN docket_entry_file_links ON docket_entry_file_links.id = bkw_files.de_file_links_id
+JOIN bankruptcy_filing_data ON bankruptcy_filing_data.id = bkw_files.bfd_id
+WHERE purchases.user_id = {{user_id}}

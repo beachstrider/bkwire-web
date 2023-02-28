@@ -1,0 +1,4 @@
+SELECT `name` as `pdf_filename`
+    FROM `bkw_files`
+    LEFT JOIN `bankruptcy_filing_data` ON `bkw_files`.`bfd_id` = `bankruptcy_filing_data`.`id`
+    WHERE `bankruptcy_filing_data`.`dci_id` = {{kwargs['id'][0]}} AND name LIKE '%petition%';

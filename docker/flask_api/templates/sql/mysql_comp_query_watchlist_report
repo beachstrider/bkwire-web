@@ -1,0 +1,4 @@
+SELECT bankruptcy_204206_data.creditor_name, users.first_name, users.last_name, users.email_address FROM companies_watchlist
+LEFT JOIN bankruptcy_204206_data ON bankruptcy_204206_data.id = companies_watchlist.id
+LEFT JOIN users ON users.id = companies_watchlist.user_id
+ORDER BY `bankruptcy_204206_data`.`creditor_name` ASC

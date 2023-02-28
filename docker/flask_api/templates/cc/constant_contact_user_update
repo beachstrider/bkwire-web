@@ -1,0 +1,18 @@
+{
+    "email_address": "{{user_email}}",
+    {%- for i in user_attributes %}
+    "{{i['key']}}": "{{i['value']}}",
+    {%- endfor -%}
+
+    {%- if naics_desc %}
+    "custom_fields": [{
+        "custom_field_id": "9d246856-fa0b-11eb-b30a-fa163ecbdd18",
+        "value": "{{naics_desc}}"
+    }],
+    {%- endif %}
+    "create_source": "Contact",
+    "list_memberships": [
+    "4f905538-0148-11ed-81cf-fa163ecbdd18"
+    ]
+}
+

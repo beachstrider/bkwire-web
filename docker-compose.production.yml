@@ -1,0 +1,91 @@
+version: "3.7"
+services:
+    web:
+      image: registry.gitlab.com/1337its/projects/bkwire/prd-nginx:latest
+      hostname: prd-bkw-nginx
+      restart: unless-stopped
+      tty: true
+      volumes:
+        - prd-nginx:/var/log/nginx/
+      networks:
+        - agent-network
+        - traefik-public
+      depends_on:
+          - flaskapi
+      command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+      deploy:
+        placement:
+          constraints:
+            - node.labels.bkwire-node-prd == true
+        labels:
+          - traefik.enable=true
+          - traefik.docker.network=traefik-public
+          - traefik.constraint-label=traefik-public
+          - traefik.http.routers.prd-web-http.rule=Host(`bkwire.com`, `www.bkwire.com`)
+          - traefik.http.routers.prd-web-http.entrypoints=http
+          - traefik.http.routers.prd-web-http.middlewares=https-redirect
+          - traefik.http.routers.prd-web-https.rule=Host(`bkwire.com`, `www.bkwire.com`)
+          - traefik.http.routers.prd-web-https.entrypoints=https
+          - traefik.http.routers.prd-web-https.tls=true
+          - traefik.http.routers.prd-web-https.tls.certresolver=le
+          - traefik.http.services.prd-web.loadbalancer.server.port=80 
+
+    flaskapi:
+      image: registry.gitlab.com/1337its/projects/bkwire/prd-flask_api:latest
+      hostname: prd-bkw-flaskapi
+      restart: unless-stopped
+      tty: true
+      volumes:
+        - prd-flaskapp:/app/logs
+        - prd-script_data:/script/data
+      networks:
+        - agent-network
+        - traefik-public
+      command: uwsgi --ini /app/uwsgi.ini
+      deploy:
+        placement:
+          constraints:
+            - node.labels.bkwire-node-prd == true
+        labels:
+          - traefik.enable=true
+          - traefik.docker.network=traefik-public
+          - traefik.constraint-label=traefik-public
+          - traefik.http.routers.prd-flaskapi-http.rule=Host(`api.bkwire.com`)
+          - traefik.http.routers.prd-flaskapi-http.entrypoints=http
+          - traefik.http.routers.prd-flaskapi-http.middlewares=https-redirect
+          - traefik.http.routers.prd-flaskapi-https.rule=Host(`api.bkwire.com`)
+          - traefik.http.routers.prd-flaskapi-https.entrypoints=https
+          - traefik.http.routers.prd-flaskapi-https.tls=true
+          - traefik.http.routers.prd-flaskapi-https.tls.certresolver=le
+          - traefik.http.services.prd-flaskapi.loadbalancer.server.port=5000
+
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      hostname: prd-bkw-phpmyadmin
+      restart: always
+      networks:
+        - agent-network
+        - traefik-public
+      deploy:
+        placement:
+          constraints:
+            - node.labels.bkwire-node-prd == true
+        labels:
+          - traefik.enable=true
+          - traefik.docker.network=traefik-public
+          - traefik.constraint-label=traefik-public
+          - traefik.http.routers.prd-phpmyadmin-http.rule=Host(`phpmyadmin.bkwire.com`)
+          - traefik.http.routers.prd-phpmyadmin-http.entrypoints=http
+          - traefik.http.services.prd-phpmyadmin.loadbalancer.server.port=80
+
+networks:
+  agent-network:
+    attachable: true
+  traefik-public:
+    external: true
+
+volumes:
+  prd-db_data:
+  prd-script_data:
+  prd-flaskapp:
+  prd-nginx:

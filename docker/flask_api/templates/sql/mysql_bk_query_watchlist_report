@@ -1,0 +1,3 @@
+SELECT bankruptcy_filing_data.dci_id, bankruptcy_filing_data.case_name, users.first_name, users.last_name, users.email_address FROM bankruptcies_watchlist
+LEFT JOIN bankruptcy_filing_data ON bankruptcy_filing_data.dci_id = bankruptcies_watchlist.did
+LEFT JOIN users ON users.id = bankruptcies_watchlist.user_id;

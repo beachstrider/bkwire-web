@@ -1,0 +1,1 @@
+DELETE FROM `{{user_notify_table}}` WHERE aws_topic_name_sub = '{{topic_name_sub}}' and user_id = '{{user_id}}';

@@ -1,0 +1,3 @@
+UPDATE user_notifications
+  SET status = 'read'
+  WHERE id = '{{kwargs['id']}}';

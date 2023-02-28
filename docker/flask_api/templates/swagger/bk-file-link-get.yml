@@ -1,0 +1,53 @@
+security:
+- bearerAuth: []
+
+tags:
+  - file
+summary: get bankruptcy file[s] link
+description: provide a dci_id and doc_url for file links
+
+parameters:
+- name: dci_id
+  in: query
+  description: Company Case entry ID
+  schema:
+    type: integer
+
+- name: doc_url
+  in: query
+  description: File link from docket entries to download
+  schema:
+    type: string
+    
+- name: docket_entry_id
+  in: query
+  description: Docket Table Entry ID
+  schema:
+    type: integer      
+responses:
+  200:
+    description: Successful response
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+  400:
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
