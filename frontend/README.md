@@ -55,6 +55,24 @@ Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The 
 
 Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
 
+## Env Vars Required
+
+The app requires the following set for proper functionality
+
+`ENV NX_APP_AUTH0_DOMAIN=`
+`ENV NX_APP_AUTH0_CLIENT_ID=`
+
+`ENV NX_APP_CLIENT_SECRET=`
+`ENV NX_APP_AUTH0_AUDIENCE=`
+`ENV NX_APP_AUTH0_SCOPE=`
+
+`ENV NX_API_URL=`
+`ENV NX_APP_STRIPE_API_KEY=`
+`ENV NX_APP_STRIPE_TABLE_ID=`
+`ENV NX_APP_STRIPE_TABLE_KEY=`
+`ENV NX_APP_STRIPE_WEBHOOK_SECRET=`
+`ENV NX_APP_STRIPE_RETURN_URL=`
+
 ## Build
 
 Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
