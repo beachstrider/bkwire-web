@@ -37,18 +37,23 @@ docker-compose up
 The above command will run the `docker-compose.yml` file along with `docker-compose.override.yml` allowing you to customize the local development environments as needed.
 
 ## Environment
+DEV - http://localhost:4200/
+
+DEV API - http://localhost:8500/apidocs
+
 DEV - https://bkwire.1337itsolutions.com
+
 DEV API - https://flask-api.1337itsolutions.com/apidocs
 
 
 STG - https://stg.bkwire.com
+
 STG API - https://stg-api.bkwire.com/apidocs
 
 
 PRD - https://bkwire.com
+
 PRD API - https://api.bkwire.com/apidocs
-
-
 
 ## Secrets
 Reach out to cbford@1337itsolutions.com for values
