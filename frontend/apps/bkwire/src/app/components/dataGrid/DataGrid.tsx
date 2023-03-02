@@ -150,6 +150,7 @@ export const GridToolbar = (props: GridToolbarProps) => {
               if (
                 !viewer ||
                 viewer.subscription === 'none' ||
+                viewer.subscription === 'trial' ||
                 viewer.subscription === 'individual'
               ) {
                 e.stopPropagation();

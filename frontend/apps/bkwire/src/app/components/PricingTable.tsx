@@ -48,8 +48,7 @@ export const PricingTable: React.VFC<any> = ({
     await get(
       `subscribe?customer_id=${customerId}&price_id=${priceId}&trial=false`
     );
-    await fetchPrices();
-    setPending('');
+    window.location.href = `/account/billing`;
   }
 
   return hasActivePlan ? (

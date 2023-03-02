@@ -37,6 +37,7 @@ import {
   useRemoveFromBankruptciesWatchlist,
 } from '../../api/api.hooks';
 import { useParams } from 'react-router';
+import dateFormat from 'date-fns/format';
 import { formatAmount, formatRangeKMB } from '../../utils/number';
 import { Share, ShareHandle } from '../../components/share/Share';
 import form201Img from '../../../assets/form201.png';
@@ -45,6 +46,7 @@ import useApi from '../../api/api.client';
 import { defaultLossFilters } from '../list/losses/LossesFilters';
 import { ActivitiesGrid } from './ActivitiesGrid';
 import { FileDownload, FileDownloadHandle } from './FileDownload';
+import { toDateSafe } from '../../utils/date';
 
 enum TabTypes {
   Creditors = 0,
@@ -54,6 +56,7 @@ enum TabTypes {
 export const Bankruptcy: React.VFC = () => {
   const theme = useTheme();
   const params = useParams();
+
   const id = Number.parseInt(params.id || '');
 
   const { mutate: addToWatchlist, isLoading: addToWatchlistLoading } =
@@ -339,7 +342,13 @@ export const Bankruptcy: React.VFC = () => {
             <InfoBoxContent
               label={'Case number'}
               value={data?.case_number || 'pending'}
-              caption={data?.date_filed && `Filed on ${data.date_filed}`}
+              caption={
+                data?.date_filed &&
+                `Filed on ${dateFormat(
+                  toDateSafe(data.date_filed),
+                  'MM-dd-yy'
+                )}`
+              }
               color={(t) => t.palette.link.light}
               labelAdornment={<InfoOutlined />}
               width="60%"
