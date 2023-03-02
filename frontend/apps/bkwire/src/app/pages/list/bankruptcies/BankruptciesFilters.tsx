@@ -26,7 +26,7 @@ import { useGetCities } from '../../../api/api.hooks';
 import { ranges, chapterTypes, states } from '../../../api/api.constants';
 import { formatKMB } from '../../../utils/number';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { FilterListRoot } from '../filters/Filters.styled';
+import Tooltip from '@mui/material/Tooltip';
 
 export const defaultBkFilters: BankruptcyFilters = {
   search: '',
@@ -182,7 +182,9 @@ export const BankruptciesFilters: React.FC<BankruptciesFiltersProps> = ({
       </FiltersHeader>
       <FilterAccordion square disableGutters defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="body2">Chapter type</Typography>
+          <Tooltip title="Chapter" arrow>
+            <Typography variant="body2">Chapter type</Typography>
+          </Tooltip>
         </AccordionSummary>
         <AccordionDetails>
           <FilterList

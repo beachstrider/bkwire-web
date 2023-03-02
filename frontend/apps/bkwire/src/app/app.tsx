@@ -1,7 +1,3 @@
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   ThemeProvider,
@@ -24,6 +20,13 @@ import { Notifications } from './pages/notifications/Notifications';
 import { AppContainer, AppRoot } from './app.styled';
 import { SnackbarProvider } from 'notistack';
 import { News } from './pages/news/News';
+
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+import '../styles/global.css';
 
 const App = () => (
   <ThemeProvider>
@@ -61,7 +64,7 @@ const App = () => (
                             <Account />
                           </RequireAuth>
                         }
-                      />                     
+                      />
                       <Route
                         path="list/*"
                         element={

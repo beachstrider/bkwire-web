@@ -12,20 +12,24 @@ export const Billing: React.VFC = () => {
   const { get } = useApi();
   const { data: viewer, isLoading: isViewerLoading } = useGetViewer();
 
+  const [planName, setPlanName] = useState('');
   const [pending, setPending] = useState<string | null>(null);
 
-  const onManage = useCallback(async () => {
-    if (viewer) {
-      setPending('manage');
-      try {
-        const res = await get(`manage?customer_id=${viewer.customer_id}`);
-        window.location.href = res.data;
-      } catch (e) {
-        console.log(e);
-        setPending(null);
+  const onManage = useCallback(
+    async (handler) => {
+      if (viewer) {
+        setPending(handler);
+        try {
+          const res = await get(`manage?customer_id=${viewer.customer_id}`);
+          window.location.href = res.data;
+        } catch (e) {
+          console.log(e);
+          setPending(null);
+        }
       }
-    }
-  }, [viewer, get]);
+    },
+    [viewer, get]
+  );
 
   return isViewerLoading || !viewer ? (
     <Loading />
@@ -62,37 +66,41 @@ export const Billing: React.VFC = () => {
               : viewer.subscription === 'none' ||
                 viewer.subscription === 'trial'
               ? 'Choose a plan'
-              : `You are currently on the ${viewer.subscription.toUpperCase()} plan.`}
+              : `You are currently on the ${planName} plan.`}
           </Typography>
         </Box>
       </Box>
 
       <Box width="100%" flexGrow={1} flexShrink={0}>
-        {!viewer.subscription_inherited &&
-          (viewer.subscription === 'none' || viewer.subscription === 'trial' ? (
-            <PricingTable />
-          ) : (
-            <Box
-              display="flex"
-              gap={2}
-              mt={10}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Typography variant="subtitle" textAlign="center">
-                Click here to
-              </Typography>
-              <ButtonLink
-                variant="contained"
-                onClick={onManage}
-                disabled={Boolean(pending)}
-                isLoading={pending === 'manage'}
-                sx={{ width: 200 }}
-              >
-                Manage your billing info
-              </ButtonLink>
-            </Box>
-          ))}
+        <PricingTable
+          hasActivePlan={
+            viewer.subscription === 'none' || viewer.subscription === 'trial'
+              ? false
+              : true
+          }
+          customerId={viewer.customer_id}
+          setPlanName={setPlanName}
+        />
+        <Box
+          display="flex"
+          gap={2}
+          mt={10}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Typography variant="subtitle" textAlign="center">
+            Click here to
+          </Typography>
+          <ButtonLink
+            variant="contained"
+            onClick={() => onManage('manage')}
+            disabled={pending === 'manage'}
+            isLoading={pending === 'manage'}
+            sx={{ width: 200 }}
+          >
+            Manage your billing info
+          </ButtonLink>
+        </Box>
       </Box>
     </Box>
   );

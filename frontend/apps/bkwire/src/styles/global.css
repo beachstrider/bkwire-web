@@ -1,0 +1,60 @@
+.stripe-plan-popular-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.stripe-plan-popular-badge::before {
+  -webkit-animation: badgeHighlightShimmer 3.5s;
+  animation: badgeHighlightShimmer 3.5s;
+  -webkit-animation-delay: 1.8s;
+  animation-delay: 1.8s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+  content: "";
+  display: block;
+  width: 200px;
+  height: 90px;
+  left: -60%;
+  position: absolute;
+  top: -150px;
+  -webkit-transform: rotate(-25deg);
+  -ms-transform: rotate(-25deg);
+  transform: rotate(-25deg);
+  background: linear-gradient(180deg, rgba(130, 130, 130, 0) 0, rgba(130, 130, 130, .2) 25%, rgba(130, 130, 130, .3) 50%, rgba(130, 130, 130, .2) 75%, rgba(130, 130, 130, 0));
+}
+
+@-webkit-keyframes badgeHighlightShimmer {
+  0% {
+    left: -100%;
+    top: -150px
+  }
+
+  50% {
+    left: 100%;
+    top: 150px
+  }
+
+  to {
+    left: 100%;
+    top: 150px
+  }
+}
+
+@keyframes badgeHighlightShimmer {
+  0% {
+    left: -100%;
+    top: -150px
+  }
+
+  50% {
+    left: 100%;
+    top: 150px
+  }
+
+  to {
+    left: 100%;
+    top: 150px
+  }
+}

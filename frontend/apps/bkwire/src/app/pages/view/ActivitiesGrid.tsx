@@ -21,7 +21,7 @@ interface ActivitiesGridProps {
 export const ActivitiesGrid = ({ caseId, components }: ActivitiesGridProps) => {
   const { data: viewer } = useGetViewer();
 
-  const { relativeDateFormatter, activityFormatter, docsPagesFormatter } =
+  const { dateFormatter, activityFormatter, docsPagesFormatter } =
     useFormatters();
 
   const [search, setSearch] = useState('');
@@ -92,7 +92,7 @@ export const ActivitiesGrid = ({ caseId, components }: ActivitiesGridProps) => {
         type: 'date',
         hideable: false,
         resizable: false,
-        renderCell: relativeDateFormatter,
+        renderCell: dateFormatter,
       },
       {
         field: 'activity',
@@ -131,7 +131,7 @@ export const ActivitiesGrid = ({ caseId, components }: ActivitiesGridProps) => {
         getActions,
       },
     ],
-    [getActions, relativeDateFormatter, activityFormatter, docsPagesFormatter]
+    [getActions, dateFormatter, activityFormatter, docsPagesFormatter]
   );
 
   return (
