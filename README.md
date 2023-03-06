@@ -1,6 +1,8 @@
 ## Name
 BKWire
 
+![image](https://user-images.githubusercontent.com/48445639/223066910-e3da3a50-27d4-436c-be52-cb00afcb7c53.png)
+
 ## Description
 This project is designed to pull bankruptcy data sets in the form of PDF, extract, parse and save this dataset into a relational database. The PDF's are downloaded once and stored in S3 for future reference and use by the end-user. The dataset is then cached using REDIS and made available using a Flask API.
 ## Features
