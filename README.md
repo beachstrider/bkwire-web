@@ -30,7 +30,7 @@ docker login registry.gitlab.com
 ```
 1. create environment-vars.env
 ```
-Get these values from cbford@1337itsolutions.com
+Get these values from mernstackdev@gmail.com
 ```
 1. run the following command
 ```
@@ -59,7 +59,7 @@ PRD - https://bkwire.com
 PRD API - https://api.bkwire.com/apidocs
 
 ## Secrets
-Reach out to cbford@1337itsolutions.com for values
+Reach out to mernstackdev729@gmail.com for values
 
 ## Environment vars
 Environment vars can be placed in the devops/{env} folder - each folder maps to an environment and will get added to the container at run time. You can append to the current vars.env or create a separate file, the deploy script will pick up any files ending in: `.env`
@@ -75,7 +75,7 @@ Deployments are done through a custom python script rolled into a container(`mic
 Deploys will be based on `docker-compose.{ENV}.yml` allowing for stack customization across environments respectively.
 
 ## Support
-Please reach out to Blake Ford for any infrastructure, API and automation requirements. cbford@1337itsolutions.com or on SLACK - `proj-bcw`
+Please reach out to Blake Ford for any infrastructure, API and automation requirements. mernstackdev729@gmail.com`
 
 ## Roadmap
 -Create TOML project file for more customization
