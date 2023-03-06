@@ -81,7 +81,7 @@ Please reach out to Blake Ford for any infrastructure, API and automation requir
 -Update gehry service with python `click`
 
 ## Authors and acknowledgment
-[C. Blake Ford](https://www.linkedin.com/in/blake-ford-1337its/)
+[Jason Mendoza](https://www.linkedin.com/in/jasonmz/)
 
 ## License
 GNU General Public License (GPL)
